@@ -44,12 +44,14 @@ public class JoinActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(context, "빈칸을 모두 채워주세요", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
+                    return;
                 }
 
                 if( !pw.equals(pwChk.toString())) {
                     Toast toast = Toast.makeText(context, "비밀번호를 다시 한번 확인해주세요.", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
+                    return;
                 }
 
                 String recieve = "Y";

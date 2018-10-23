@@ -9,6 +9,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 ;import com.together.kimdog91.myapplication.Adaptor.ListViewAdaptor;
 
+import org.w3c.dom.Text;
+
 public class MoimActivity extends Activity {
 
     TextView moimTitleText;
@@ -20,7 +22,7 @@ public class MoimActivity extends Activity {
     private int[] img = {R.drawable.art, R.drawable.basketball, R.drawable.guitar};
     private String[] title = { "미술 모임", "농구 모임", "기타치는 사람들" };
     private String[] content = { "미술을 하는 사람들입니다.", "아자아자!", "띵가띵~" };
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,9 @@ public class MoimActivity extends Activity {
         for(int i=0; i<img.length; i++) {
             adaptor.addVO(ContextCompat.getDrawable(this, img[i]), title[i], content[i]);
         }
+
+        moimTitleText = (TextView) findViewById(R.id.MoimTitle);
+        moimAddBtn = (Button) findViewById(R.id.addMoimBtn);
 
         moimTitleText.setText("Moim ("+ adaptor.getCount() + ")");
 
