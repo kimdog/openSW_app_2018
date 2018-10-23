@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">TogetherApplication</string>
+    <string name="app_name">모임 (MOIM)</string>
     <string name="id">아이디</string>
     <string name="pw">비밀번호</string>
+    <string name="pw_chk">비밀번호 확인</string>
+    <string name="phone">핸드폰 번호</string>
     <string name="join">회원가입</string>
     <string name="login">로그인</string>
+    <string name="submit">제출</string>
     <string name="addMoim">+ 모임 등록</string>
 </resources>
