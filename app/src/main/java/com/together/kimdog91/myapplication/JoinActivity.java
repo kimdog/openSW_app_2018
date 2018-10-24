@@ -1,6 +1,7 @@
 package com.together.kimdog91.myapplication;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -41,18 +42,22 @@ public class JoinActivity extends AppCompatActivity {
                 String phone = phoneEditText.getText().toString();
 
                 if( id.isEmpty() || pw.isEmpty() || pwChk.isEmpty() || phone.isEmpty() ) {
-                    Toast toast = Toast.makeText(context, "빈칸을 모두 채워주세요", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(context, context.getResources().getString(R.string.error_account_0001), Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                     return;
                 }
 
                 if( !pw.equals(pwChk.toString())) {
-                    Toast toast = Toast.makeText(context, "비밀번호를 다시 한번 확인해주세요.", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(context, context.getResources().getString(R.string.error_account_0002), Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                     return;
                 }
+
+
+
+                NetworkManager nm = new NetworkManager();
 
                 String recieve = "Y";
                 if(recieve.equals("Y")) {
@@ -67,4 +72,6 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

@@ -22,7 +22,7 @@ public class MoimActivity extends Activity {
     private int[] img = {R.drawable.art, R.drawable.basketball, R.drawable.guitar};
     private String[] title = { "미술 모임", "농구 모임", "기타치는 사람들" };
     private String[] content = { "미술을 하는 사람들입니다.", "아자아자!", "띵가띵~" };
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
