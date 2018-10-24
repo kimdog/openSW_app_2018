@@ -59,10 +59,10 @@ public class NetworkManager extends BaseActivity {
             // 동기화를 위해 get() 함수 이용
             receiveJsonArray = new JSONArray(new JSONTask().execute(serverIP + url).get());
 
-            progressOFF();
-
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            progressOFF();
         }
 
         return receiveJsonArray;

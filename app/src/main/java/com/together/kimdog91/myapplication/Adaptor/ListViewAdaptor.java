@@ -56,7 +56,7 @@ public class ListViewAdaptor extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, (pos+1)+"번째 데이터가 들어있습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, (pos+1)+"번째 데이터", Toast.LENGTH_SHORT).show();
             }
         });
 

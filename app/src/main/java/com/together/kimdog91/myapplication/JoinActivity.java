@@ -1,6 +1,7 @@
 package com.together.kimdog91.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import org.json.JSONObject;
 
 public class JoinActivity extends AppCompatActivity {
 
+    public static final String EXTRA_SIGN_UP_ID = "extra.signup.id";
     private boolean checkId = false; // ID 중복여부
 
     EditText idEditText;
@@ -96,6 +98,9 @@ public class JoinActivity extends AppCompatActivity {
                         toast.show();
 
                         // 액티비티 종료
+                        Intent newData = new Intent();
+                        newData.putExtra(EXTRA_SIGN_UP_ID, id);
+                        setResult(RESULT_OK, newData);
                         finish();
                     }
                     else {

@@ -14,12 +14,15 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static int SIGN_UP_ID = 10;
+
     EditText idEditText;
     EditText pwEditText;
     Button joinBtn;
     Button loginBtn;
 
-    NetworkManager nm;
+    private NetworkManager nm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent( MainActivity.this, JoinActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, SIGN_UP_ID);
             }
         });
 
@@ -68,22 +71,35 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray result = nm.executePost("/api/signin", colums, data);
 
                     JSONObject resultObject = result.getJSONObject(0);
-                    if ( resultObject.get("errorCode").toString().equals("Y") ) {
+                    if ( resultObject.get("uid") != null ) {
+                        // 허가되지 않은 사용자
+                        if( !resultObject.get("passYn").equals("Y") ) {
+                            Toast toast = Toast.makeText(context, context.getResources().getString(R.string.error_login_0002), Toast.LENGTH_SHORT);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+                            return;
+                        }
+
                         // 로그인 성공
-                        Toast toast = Toast.makeText(context, context.getResources().getString(R.string.success_account_0001), Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(context, context.getResources().getString(R.string.success_login_0001), Toast.LENGTH_SHORT);
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         toast.show();
 
                         Intent intent = new Intent(MainActivity.this, MoimActivity.class);
+                        intent.putExtra("uid", Integer.parseInt(resultObject.get("uid").toString()));
+                        intent.putExtra("name", resultObject.get("name").toString());
+                        intent.putExtra("phone", resultObject.get("phone").toString());
+                        // pos_id,
+                        // profile_id 처리
+
                         startActivity(intent);
 
                         // 액티비티 종료
                         finish();
                     }
                     else {
-                        // 계정 생성 실패
-                        // 서버 오류
-                        Toast toast = Toast.makeText(context, context.getResources().getString(R.string.error_account_0004), Toast.LENGTH_SHORT);
+                        // 로그인 실패
+                        Toast toast = Toast.makeText(context, context.getResources().getString(R.string.error_login_0001), Toast.LENGTH_SHORT);
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         toast.show();
                     }
@@ -95,6 +111,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // 결과반환 액티비티 식별
+        if( requestCode == SIGN_UP_ID ) {
+            if(resultCode == RESULT_OK) {
+                String new_id = data.getStringExtra(JoinActivity.EXTRA_SIGN_UP_ID);
+                idEditText.setText(new_id);
+            }
+        }
     }
 }
 

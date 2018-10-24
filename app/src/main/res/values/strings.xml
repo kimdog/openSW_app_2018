@@ -17,6 +17,8 @@
     <string name="success_account_0001">등록되었습니다.</string>
     <string name="success_account_0002">생성 가능한 아이디입니다.</string>
 
+    <string name="success_login_0001">Hello ~ </string>
+
 
 
     <!-- error -->
@@ -29,6 +31,7 @@
     <string name="error_account_0006">아이디 중복확인을 해주세요.</string>
 
     <string name="error_login_0001">접속에 실패하였습니다.</string>
+    <string name="error_login_0002">허가되지 않은 사용자</string>
 
     <string name="error_unknown">알 수 없는 오류</string>
 
