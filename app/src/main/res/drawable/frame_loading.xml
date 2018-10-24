@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:oneshot="false">
+
+    <item android:drawable="@drawable/loading_00_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_01_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_02_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_03_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_04_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_05_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_06_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_07_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_08_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_09_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_10_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_11_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_12_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_13_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_14_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_15_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_16_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_17_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_18_delay" android:duration="30" />
+    <item android:drawable="@drawable/loading_19_delay" android:duration="30" />
+
+</animation-list>

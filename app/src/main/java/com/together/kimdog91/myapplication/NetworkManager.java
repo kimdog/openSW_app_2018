@@ -1,7 +1,7 @@
 package com.together.kimdog91.myapplication;
 
+import android.app.Activity;
 import android.os.AsyncTask;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -16,17 +16,24 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class NetworkManager {
+public class NetworkManager extends BaseActivity {
 
     private final static String serverIP = "http://13.125.71.127:54705";
 
     private JSONObject sendJsonObject = null;
     private JSONArray receiveJsonArray = null;
+    private Activity activity;
 
     public void NetworkManager() {
 
     }
 
+    // 상위 액티비티 전달을 위한 함수
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    // string -> JSON Object
     public JSONObject dataToJsonFormat(String[] name, String[] data) {
         JSONObject jsonObject = new JSONObject();
         try {
@@ -40,10 +47,23 @@ public class NetworkManager {
         return jsonObject;
     }
 
-    public JSONArray excutePost(String url, JSONObject data) {
+    public JSONArray executePost(String url, String[] name, String[] data) {
+        return executePost(url, dataToJsonFormat(name, data));
+    }
+
+    public JSONArray executePost(String url, JSONObject data) {
         sendJsonObject = data;
 
-        new JSONTask().execute(serverIP + url);
+        try {
+            progressON(this.activity, "Loading...");
+            // 동기화를 위해 get() 함수 이용
+            receiveJsonArray = new JSONArray(new JSONTask().execute(serverIP + url).get());
+
+            progressOFF();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return receiveJsonArray;
     }
@@ -109,12 +129,14 @@ public class NetworkManager {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            /*
             try {
                 // 받아오는 형태는 JSON 배열
                 receiveJsonArray = new JSONArray(result);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            */
         }
     }
 }
