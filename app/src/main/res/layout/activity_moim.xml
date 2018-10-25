@@ -8,14 +8,16 @@
     >
 
     <LinearLayout
-        android:padding="10dp"
+        android:padding="15dp"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary">
         <TextView
             android:id="@+id/MoimTitle"
             android:text="Moim ( 2 )"
+            android:textColor="@color/colorWhite"
             android:textStyle="bold"
-            android:textSize="30dp"
+            android:textSize="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -24,7 +26,7 @@
     <LinearLayout
         android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="370dp">
+        android:layout_height="350dp">
 
         <ListView
             android:id="@+id/List_view"

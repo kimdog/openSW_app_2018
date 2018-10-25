@@ -1,6 +1,7 @@
 package com.together.kimdog91.myapplication.Adaptor;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.view.LayoutInflater;
@@ -41,6 +42,7 @@ public class ListViewAdaptor extends BaseAdapter {
             convertView = inflater.inflate(R.layout.custom_listview, parent, false);
         }
 
+        TextView imageUrl = (TextView) convertView.findViewById(R.id.img_url);
         ImageView image = (ImageView) convertView.findViewById(R.id.img);
         TextView title = (TextView) convertView.findViewById(R.id.title);
         TextView content = (TextView) convertView.findViewById(R.id.content);
@@ -48,7 +50,8 @@ public class ListViewAdaptor extends BaseAdapter {
         ListVO listViewItem = listVO.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
-        image.setImageDrawable(listViewItem.getImg());
+        imageUrl.setText(listViewItem.getImgUrl());
+        image.setImageBitmap(listViewItem.getImg());
         title.setText(listViewItem.getTitle());
         content.setText(listViewItem.getContent());
 
@@ -74,10 +77,11 @@ public class ListViewAdaptor extends BaseAdapter {
     }
 
     // 데이터값 넣어줌
-    public void addVO(Drawable icon, String title, String content) {
+    public void addVO(String imgUrl, Bitmap img, String title, String content) {
         ListVO item = new ListVO();
 
-        item.setImg(icon);
+        item.setImgUrl(imgUrl);
+        item.setImg(img);
         item.setTitle(title);
         item.setContent(content);
 

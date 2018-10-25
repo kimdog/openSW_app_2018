@@ -1,17 +1,24 @@
 package com.together.kimdog91.myapplication.ListVO;
 
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
 
 public class ListVO {
-    private Drawable img;
+
+    private String imgUrl;
+    private Bitmap img;
     private String title;
     private String content;
 
-    public Drawable getImg() {
+    public String getImgUrl() {
+        return imgUrl;
+    }
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+    public Bitmap getImg() {
         return img;
     }
-
-    public void setImg(Drawable Img) {
+    public void setImg(Bitmap img) {
         this.img = img;
     }
 
