@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray result = nm.executePost("/api/signin", colums, data);
 
                     JSONObject resultObject = result.getJSONObject(0);
-                    if ( resultObject.get("uid") != null ) {
+                    if ( resultObject.getInt("uid") >= 0 ) {
                         // 허가되지 않은 사용자
                         if( !resultObject.get("passYn").equals("Y") ) {
                             Toast toast = Toast.makeText(context, context.getResources().getString(R.string.error_login_0002), Toast.LENGTH_SHORT);

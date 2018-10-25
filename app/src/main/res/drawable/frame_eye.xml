@@ -3,5 +3,21 @@
 
     <item android:drawable="@drawable/eye_open_2" android:duration="3000" />
     <item android:drawable="@drawable/eye_close_2" android:duration="100" />
+    <item android:drawable="@drawable/eye_open_2" android:duration="3000" />
+    <item android:drawable="@drawable/eye_close_2" android:duration="100" />
+    <item android:drawable="@drawable/eye_open_2" android:duration="1000" />
+    <item android:drawable="@drawable/eye_left_2" android:duration="300" />
+    <item android:drawable="@drawable/eye_right_2" android:duration="300" />
+    <item android:drawable="@drawable/eye_close_2" android:duration="100" />
+    <item android:drawable="@drawable/eye_open_2" android:duration="2000" />
+    <item android:drawable="@drawable/eye_close_2" android:duration="100" />
+    <item android:drawable="@drawable/eye_open_2" android:duration="2000" />
+    <item android:drawable="@drawable/eye_left_2" android:duration="400" />
+    <item android:drawable="@drawable/eye_open_2" android:duration="2000" />
+    <item android:drawable="@drawable/eye_close_2" android:duration="100" />
+    <item android:drawable="@drawable/eye_open_2" android:duration="3000" />
+    <item android:drawable="@drawable/eye_close_2" android:duration="100" />
+    <item android:drawable="@drawable/eye_open_2" android:duration="3000" />
+    <item android:drawable="@drawable/eye_right_2" android:duration="300" />
 
 </animation-list>

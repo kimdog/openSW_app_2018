@@ -45,6 +45,7 @@
         android:background="@color/colorBlack">
 
         <Button
+            android:id="@+id/myPosBtn"
             android:text="@string/cur_position"
             android:layout_margin="10dp"
             android:layout_weight="1"
@@ -52,6 +53,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/selector_pressed"/>
         <Button
+            android:id="@+id/moimPosBtn"
             android:text="@string/cur_moim"
             android:layout_margin="10dp"
             android:layout_weight="1"
