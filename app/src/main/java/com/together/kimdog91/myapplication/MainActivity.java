@@ -2,12 +2,14 @@ package com.together.kimdog91.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static int SIGN_UP_ID = 10;
 
+    LinearLayout mainLayout;
     EditText idEditText;
     EditText pwEditText;
     Button joinBtn;
@@ -26,18 +29,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        startActivity(new Intent(this, LoadingActivity.class));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         final Context context = getApplicationContext();
 
+        mainLayout = (LinearLayout) findViewById(R.id.layout_main);
         idEditText = (EditText) findViewById(R.id.id);
         pwEditText = (EditText) findViewById(R.id.pw);
         joinBtn = (Button) findViewById(R.id.joinBtn);
         loginBtn = (Button) findViewById(R.id.loginBtn);
 
+        // 백그라운드 애니메이션
+        final AnimationDrawable frameAnimation = (AnimationDrawable) mainLayout.getBackground();
+        frameAnimation.start();
+
         nm = new NetworkManager();
         nm.setActivity(this);
+
 
         joinBtn.setOnClickListener(new View.OnClickListener() {
             @Override

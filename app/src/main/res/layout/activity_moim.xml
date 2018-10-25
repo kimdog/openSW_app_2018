@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorMainBlue"
+    android:background="@color/colorBlack"
     >
 
     <LinearLayout
@@ -26,7 +26,7 @@
     <LinearLayout
         android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="350dp">
+        android:layout_height="340dp">
 
         <ListView
             android:id="@+id/List_view"

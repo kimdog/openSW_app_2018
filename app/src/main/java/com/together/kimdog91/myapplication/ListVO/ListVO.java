@@ -9,6 +9,11 @@ public class ListVO {
     private String title;
     private String content;
 
+    private int mid;
+    private String lon;
+    private String lat;
+
+
     public String getImgUrl() {
         return imgUrl;
     }
@@ -36,6 +41,27 @@ public class ListVO {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getMid() {
+        return mid;
+    }
+    public void setMid(int mid) {
+        this.mid = mid;
+    }
+
+    public String getLon() {
+        return lon;
+    }
+    public void setLon(String lon) {
+        this.lon = lon;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+    public void setLat(String lat) {
+        this.lat = lat;
     }
 
 }

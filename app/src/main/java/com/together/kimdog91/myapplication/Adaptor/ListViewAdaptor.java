@@ -1,19 +1,19 @@
 package com.together.kimdog91.myapplication.Adaptor;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.together.kimdog91.myapplication.ListVO.ListVO;
+import com.together.kimdog91.myapplication.MapsActivity;
+import com.together.kimdog91.myapplication.MoimActivity;
 import com.together.kimdog91.myapplication.R;
 
 import java.util.ArrayList;
@@ -42,6 +42,9 @@ public class ListViewAdaptor extends BaseAdapter {
             convertView = inflater.inflate(R.layout.custom_listview, parent, false);
         }
 
+        TextView mid = (TextView) convertView.findViewById(R.id.mid);
+        TextView lon = (TextView) convertView.findViewById(R.id.lon);
+        TextView lat = (TextView) convertView.findViewById(R.id.lat);
         TextView imageUrl = (TextView) convertView.findViewById(R.id.img_url);
         ImageView image = (ImageView) convertView.findViewById(R.id.img);
         TextView title = (TextView) convertView.findViewById(R.id.title);
@@ -49,17 +52,34 @@ public class ListViewAdaptor extends BaseAdapter {
 
         ListVO listViewItem = listVO.get(position);
 
+        final int _mid = listViewItem.getMid();
+        final String _lon = listViewItem.getLon();
+        final String _lat = listViewItem.getLat();
+        final String _title = listViewItem.getTitle();
+
         // 아이템 내 각 위젯에 데이터 반영
+        mid.setText(String.valueOf(listViewItem.getMid()));
+        lon.setText(listViewItem.getLon());
+        lat.setText(listViewItem.getLat());
         imageUrl.setText(listViewItem.getImgUrl());
         image.setImageBitmap(listViewItem.getImg());
         title.setText(listViewItem.getTitle());
         content.setText(listViewItem.getContent());
 
+
         // 리스트 뷰 클릭 이벤트
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, (pos+1)+"번째 데이터", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, _mid + " : " + _title, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, MapsActivity.class);
+
+                intent.putExtra("mid", _mid);
+                intent.putExtra("title", _title);
+                intent.putExtra("mlon", _lon);
+                intent.putExtra("mlat", _lat);
+
+                context.startActivity(intent);
             }
         });
 
@@ -77,9 +97,12 @@ public class ListViewAdaptor extends BaseAdapter {
     }
 
     // 데이터값 넣어줌
-    public void addVO(String imgUrl, Bitmap img, String title, String content) {
+    public void addVO(int mid, String lon, String lat, String imgUrl, Bitmap img, String title, String content) {
         ListVO item = new ListVO();
 
+        item.setMid(mid);
+        item.setLon(lon);
+        item.setLat(lat);
         item.setImgUrl(imgUrl);
         item.setImg(img);
         item.setTitle(title);

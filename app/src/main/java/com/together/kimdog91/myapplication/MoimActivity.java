@@ -25,10 +25,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class MoimActivity extends BaseActivity {
+public class MoimActivity extends Activity {
 
     // 유저 정보
-    private int uid;
+    public static int uid; // 현재 유저의 uid 는 공유한다.
     private String name;
     private String phone;
 
@@ -44,6 +44,9 @@ public class MoimActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        startActivity(new Intent(this, LoadingActivity.class));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_moim);
 
@@ -67,11 +70,12 @@ public class MoimActivity extends BaseActivity {
         moimTitleText = (TextView) findViewById(R.id.MoimTitle);
         moimAddBtn = (Button) findViewById(R.id.addMoimBtn);
 
-        getMoimList(this);
+        //progressON(this, "loading...");
+        getMoimList();
 
     }
 
-    private void getMoimList(Activity activity) {
+    private void getMoimList() {
         // 데이터 세팅
         String[] colums = { "uid" };
         String[] data = { String.valueOf(uid) };
@@ -79,7 +83,6 @@ public class MoimActivity extends BaseActivity {
         try {
             // 서버와 통신
             JSONArray result = nm.executePost("/api/moims", colums, data);
-            progressON(activity, "loading...");
 
             for(int i=0; i<result.length(); i++) {
                 JSONObject resultObject = result.getJSONObject(i);
@@ -93,9 +96,15 @@ public class MoimActivity extends BaseActivity {
                 String cate_name = resultObject.getString("cate_name");
                 String img_url = resultObject.getString("url");
 
+                int mid = resultObject.getInt("mid");
+                String lon = resultObject.getString("lon");
+                String lat = resultObject.getString("lat");
+
+
                 String content = "["+ pname +"] 반경: " + range +"m, " + cate_name;
                 // 어뎁터를 통한 값 전달
-                adaptor.addVO(img_url, getImageFromUrl(activity, img_url), mname, content);
+                adaptor.addVO(mid, lon, lat, img_url, getImageFromUrl(img_url), mname, content);
+                tempBitmap = null;
 
             }
 
@@ -104,12 +113,12 @@ public class MoimActivity extends BaseActivity {
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
-            progressOFF();
+            //progressOFF();
         }
     }
 
 
-    private Bitmap getImageFromUrl(final Activity activity, final String _url) {
+    private Bitmap getImageFromUrl(final String _url) {
 
         Thread mThread = new Thread() {
             @Override
